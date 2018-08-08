@@ -1,0 +1,57 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "mochico.example.com.pagingsample"
+        minSdkVersion 27
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    dataBinding {
+        enabled = true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    kapt 'androidx.databinding:databinding-compiler:3.3.0-alpha05'
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation 'androidx.appcompat:appcompat:1.0.0-rc01'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha1'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0-rc01'
+
+    def aac_version = "2.0.0-rc01"
+    implementation "androidx.lifecycle:lifecycle-extensions:$aac_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$aac_version"
+    implementation "androidx.lifecycle:lifecycle-livedata:$aac_version"
+
+    def room_version = "2.0.0-rc01"
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
+    def paging_version = "2.0.0-rc01"
+    implementation "androidx.paging:paging-runtime:$paging_version"
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
+}
